@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: alcohol-service
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        name: config
+        namespace: spring
+      client:
+        namespace: spring
+      reload:
+        enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
