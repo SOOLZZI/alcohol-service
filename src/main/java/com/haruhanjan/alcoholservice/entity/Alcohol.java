@@ -1,6 +1,7 @@
 package com.haruhanjan.alcoholservice.entity;
 
 import com.haruhanjan.alcoholservice.dto.AlcoholDto;
+import com.haruhanjan.alcoholservice.dto.AlcoholRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class Alcohol {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "alcohol_id")
     private Long id;
@@ -29,7 +31,7 @@ public class Alcohol {
         this.createdAt = LocalDateTime.now();
     }
 
-    public void modify(AlcoholDto dto) {
+    public void modify(AlcoholRequest dto) {
         this.classification = dto.getClassification();
         this.price = dto.getPrice();
     }
