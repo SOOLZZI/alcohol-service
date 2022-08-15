@@ -1,9 +1,3 @@
-buildscript {
-    dependencies {
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.12.RELEASE"
-    }
-}
-
 plugins {
     id 'org.springframework.boot' version '2.7.2'
     id 'io.spring.dependency-management' version '1.0.12.RELEASE'
@@ -24,25 +18,15 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('springCloudVersion', "Hoxton.RELEASE")
-}
-
-apply plugin: "io.spring.dependency-management"
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes'
-    implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-config'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes:1.1.10.RELEASE'
+    implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-config:1.1.10.RELEASE'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.3'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

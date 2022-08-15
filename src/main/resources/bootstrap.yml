@@ -7,10 +7,10 @@ spring:
     kubernetes:
       config:
         enabled: true
-        name: config
-        namespace: spring
-      client:
-        namespace: spring
+        name: alcohol-service-config
+#        namespace: spring
+#      client:
+#        namespace: spring
       reload:
         enabled: true
 management:
