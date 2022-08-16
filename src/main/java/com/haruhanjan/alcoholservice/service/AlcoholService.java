@@ -1,6 +1,8 @@
 package com.haruhanjan.alcoholservice.service;
 
 import com.haruhanjan.alcoholservice.dto.AlcoholDto;
+import com.haruhanjan.alcoholservice.dto.AlcoholRequest;
+import com.haruhanjan.alcoholservice.dto.AlcoholResponse;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.repository.AlcoholRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,15 +15,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AlcoholService {
-    @Autowired
-    private AlcoholRepository alcoholRepository;
 
-    public void saveAlcohol(AlcoholDto dto) {
-        Alcohol saved = Alcohol.builder()
-                .classification(dto.getClassification())
-                .price(dto.getPrice())
-                .build();
-        alcoholRepository.save(saved);
+    private final AlcoholRepository alcoholRepository; // field injection
+
+    public AlcoholResponse save(AlcoholRequest dto) {
+
+        Alcohol saved = alcoholRepository.save(dto.toEntity());
+        return AlcoholResponse.of(saved);
     }
 
     @Transactional

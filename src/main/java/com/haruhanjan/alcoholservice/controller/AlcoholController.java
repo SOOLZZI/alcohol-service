@@ -23,21 +23,21 @@ public class AlcoholController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    @PostMapping("/alcohol")
-    public ResponseEntity createAlcohol(@RequestBody AlcoholDto dto){
-        alcoholService.saveAlcohol(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    @PostMapping
+    public ResponseEntity<AlcoholResponse> createAlcohol(@RequestBody AlcoholRequest dto) {
+        AlcoholResponse result = alcoholService.save(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    @PatchMapping("/alcohol")
-    public ResponseEntity patchAlcohol(@RequestBody AlcoholDto dto){
+    @PatchMapping
+    public ResponseEntity<Void> patchAlcohol(@RequestBody AlcoholRequest dto) {
         alcoholService.modify(dto);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/alcohol/{id}")
-    public ResponseEntity deleteAlcohol(@PathVariable Long id){
-        alcoholService.deleteAlcoholById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Void> deleteAlcohol(@PathVariable Long id) {
+        alcoholService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
