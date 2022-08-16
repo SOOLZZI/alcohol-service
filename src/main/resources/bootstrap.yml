@@ -1,5 +1,3 @@
-server:
-  port: 8080
 spring:
   application:
     name: alcohol-service
@@ -8,9 +6,6 @@ spring:
       config:
         enabled: true
         name: alcohol-service-config
-#        namespace: spring
-#      client:
-#        namespace: spring
       reload:
         enabled: true
 management:
