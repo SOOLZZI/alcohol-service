@@ -1,12 +1,15 @@
 package com.haruhanjan.alcoholservice.entity;
 
-import com.haruhanjan.alcoholservice.dto.AlcoholRequest;
+import com.haruhanjan.alcoholservice.dto.CreateRequestDTO;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@DynamicInsert
 @Entity
 @Getter
 @Builder
@@ -39,21 +42,15 @@ public class Alcohol {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    private Boolean isDeleted = false;
+    @ColumnDefault("0")
+    private Boolean isDeleted;
     private LocalDateTime deletedAt;
 
-    public Alcohol(String name, int volume, String madeFrom, String seller, int price, AlcoholType alcoholType, LocalDate productDate) {
-        this.name = name;
-        this.volume = volume;
-        this.madeFrom = madeFrom;
-        this.seller = seller;
-        this.price = price;
-        this.alcoholType = alcoholType;
-        this.productDate = productDate;
+    public void setCreatedAt(){
         this.createdAt = LocalDateTime.now();
     }
 
-    public void modify(AlcoholRequest dto) {
+    public void modify(CreateRequestDTO dto) {
         this.price = dto.getPrice();
         this.updatedAt = LocalDateTime.now();
     }

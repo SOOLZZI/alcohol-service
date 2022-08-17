@@ -1,8 +1,8 @@
 package com.haruhanjan.alcoholservice.service;
 
-import com.haruhanjan.alcoholservice.dto.AlcoholRequest;
-import com.haruhanjan.alcoholservice.dto.AlcoholResponse;
-import com.haruhanjan.alcoholservice.dto.ModifyDto;
+import com.haruhanjan.alcoholservice.dto.CreateRequestDTO;
+import com.haruhanjan.alcoholservice.dto.ResponseDTO;
+import com.haruhanjan.alcoholservice.dto.ModifyDTO;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
 import com.haruhanjan.alcoholservice.repository.AlcoholRepository;
@@ -20,14 +20,14 @@ public class AlcoholService {
 
     private final AlcoholRepository alcoholRepository; // field injection
 
-    public AlcoholResponse save(AlcoholRequest dto) {
+    public ResponseDTO save(CreateRequestDTO dto) {
 
         Alcohol saved = alcoholRepository.save(dto.toEntity());
-        return AlcoholResponse.of(saved);
+        return ResponseDTO.of(saved);
     }
 
     @Transactional
-    public void modify(Long id, ModifyDto dto) {
+    public void modify(Long id, ModifyDTO dto) {
         Alcohol target = alcoholRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         Optional.ofNullable(dto.getPrice()).ifPresent(target::setPrice);
@@ -48,8 +48,8 @@ public class AlcoholService {
         target.delete();
     }
 
-    public List<AlcoholResponse> getAll() {
+    public List<ResponseDTO> getAll() {
         List<Alcohol> targets = alcoholRepository.findAll();
-        return AlcoholResponse.listOf(targets);
+        return ResponseDTO.listOf(targets);
     }
 }

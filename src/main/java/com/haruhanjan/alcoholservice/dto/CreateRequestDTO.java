@@ -2,13 +2,16 @@ package com.haruhanjan.alcoholservice.dto;
 
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Setter
-public class AlcoholRequest {
+@Data
+public class CreateRequestDTO {
 
     @Getter
     private Long id;
@@ -31,6 +34,7 @@ public class AlcoholRequest {
                 .seller(seller)
                 .alcoholType(AlcoholType.valueOf(alcoholType))
                 .productDate(productDate)
+                .createdAt(LocalDateTime.now())
                 .build();
     }
 }
