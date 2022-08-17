@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @Getter
-public class ModifyDTO {
+public class ModifyAlcoholDTO {
     private String name;
     private float originVolume;
     private int volume; // 도수*10

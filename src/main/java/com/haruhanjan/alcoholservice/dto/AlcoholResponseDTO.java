@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 @Builder
 @AllArgsConstructor
 @Getter
-public class ResponseDTO {
+public class AlcoholResponseDTO {
+    // validation 적용
     private Long id;
 
     private String name;
@@ -21,8 +22,8 @@ public class ResponseDTO {
     private String alcoholType;
     private LocalDate productDate;
 
-    public static ResponseDTO of(Alcohol alcohol) {
-        return ResponseDTO.builder()
+    public static AlcoholResponseDTO of(Alcohol alcohol) {
+        return AlcoholResponseDTO.builder()
                 .id(alcohol.getId())
                 .name(alcohol.getName())
                 .madeFrom(alcohol.getMadeFrom())
@@ -34,9 +35,9 @@ public class ResponseDTO {
                 .build();
     }
 
-    public static List<ResponseDTO> listOf(List<Alcohol> lists) {
+    public static List<AlcoholResponseDTO> listOf(List<Alcohol> lists) {
         return lists.stream()
-                .map(ResponseDTO::of)
+                .map(AlcoholResponseDTO::of)
                 .collect(Collectors.toList());
     }
 
