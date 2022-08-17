@@ -1,8 +1,8 @@
 package com.haruhanjan.alcoholservice.service;
 
-import com.haruhanjan.alcoholservice.dto.CreateRequestDTO;
-import com.haruhanjan.alcoholservice.dto.ResponseDTO;
-import com.haruhanjan.alcoholservice.dto.ModifyDTO;
+import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
+import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
+import com.haruhanjan.alcoholservice.dto.ModifyAlcoholDTO;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
 import com.haruhanjan.alcoholservice.repository.AlcoholRepository;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,14 +21,15 @@ public class AlcoholService {
 
     private final AlcoholRepository alcoholRepository; // field injection
 
-    public ResponseDTO save(CreateRequestDTO dto) {
-
-        Alcohol saved = alcoholRepository.save(dto.toEntity());
-        return ResponseDTO.of(saved);
+    public AlcoholResponseDTO save(CreateAlcoholRequestDTO dto) {
+        Alcohol save = dto.toEntity();
+        save.setCreatedAt();
+        Alcohol saved = alcoholRepository.save(save);
+        return AlcoholResponseDTO.of(saved);
     }
 
     @Transactional
-    public void modify(Long id, ModifyDTO dto) {
+    public void modify(Long id, ModifyAlcoholDTO dto) {
         Alcohol target = alcoholRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         Optional.ofNullable(dto.getPrice()).ifPresent(target::setPrice);
@@ -48,8 +50,8 @@ public class AlcoholService {
         target.delete();
     }
 
-    public List<ResponseDTO> getAll() {
+    public List<AlcoholResponseDTO> getAll() {
         List<Alcohol> targets = alcoholRepository.findAll();
-        return ResponseDTO.listOf(targets);
+        return AlcoholResponseDTO.listOf(targets);
     }
 }

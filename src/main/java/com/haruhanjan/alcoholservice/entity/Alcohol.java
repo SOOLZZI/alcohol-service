@@ -1,6 +1,6 @@
 package com.haruhanjan.alcoholservice.entity;
 
-import com.haruhanjan.alcoholservice.dto.CreateRequestDTO;
+import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -50,7 +50,7 @@ public class Alcohol {
         this.createdAt = LocalDateTime.now();
     }
 
-    public void modify(CreateRequestDTO dto) {
+    public void modify(CreateAlcoholRequestDTO dto) {
         this.price = dto.getPrice();
         this.updatedAt = LocalDateTime.now();
     }
