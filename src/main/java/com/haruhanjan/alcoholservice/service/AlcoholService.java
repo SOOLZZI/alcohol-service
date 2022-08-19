@@ -20,7 +20,6 @@ public class AlcoholService {
 
     public AlcoholResponseDTO save(CreateAlcoholRequestDTO dto) {
         Alcohol save = dto.toEntity();
-        save.setCreatedAt();
         Alcohol saved = alcoholRepository.save(save);
         return AlcoholResponseDTO.of(saved);
     }

@@ -3,6 +3,7 @@ package com.haruhanjan.alcoholservice.dto;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
 
+import com.haruhanjan.alcoholservice.entity.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,7 @@ public class CreateAlcoholRequestDTO {
                 .seller(seller)
                 .alcoholType(alcoholType)
                 .productDate(productDate)
+                .baseTimeEntity(new BaseTimeEntity())
                 .build();
     }
 }

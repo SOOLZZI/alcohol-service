@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -36,27 +37,9 @@ public class Alcohol {
     private AlcoholType alcoholType;
     private LocalDate productDate;
 
+    @Embedded
+    private BaseTimeEntity baseTimeEntity;
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
-    @ColumnDefault("0")
-    private Boolean isDeleted;
-    private LocalDateTime deletedAt;
-
-    public void setCreatedAt() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    public void setUpdatedAt() {
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    public void delete() {
-        this.deletedAt = LocalDateTime.now();
-        setUpdatedAt();
-        this.isDeleted = true;
-    }
 
     public void modify(ModifyAlcoholDTO dto) {
         Optional.ofNullable(dto.getPrice()).ifPresent(p -> price = p);
@@ -66,6 +49,10 @@ public class Alcohol {
         Optional.ofNullable(dto.getVolume()).ifPresent(p -> volume = p);
         Optional.ofNullable(dto.getSeller()).ifPresent(p -> seller = p);
         Optional.ofNullable(dto.getMadeFrom()).ifPresent(p -> madeFrom = p);
-        setUpdatedAt();
+        baseTimeEntity.update();
+    }
+
+    public void delete() {
+        baseTimeEntity.delete();
     }
 }
