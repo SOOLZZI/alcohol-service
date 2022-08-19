@@ -24,14 +24,14 @@ public class Alcohol {
     @Setter
     private String name;
     @Setter
-    private int volume; // 도수*10
+    private Float volume;
     @Setter
     private String madeFrom; // 원산지
     @Setter
     private String seller;
 
     @Setter
-    private int price;
+    private Integer price;
     @Setter
     @Enumerated(value = EnumType.STRING)
     private AlcoholType alcoholType;
