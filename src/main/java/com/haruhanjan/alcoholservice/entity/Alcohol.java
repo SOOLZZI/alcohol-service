@@ -5,14 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
-import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
 
 @DynamicInsert
 @Entity
@@ -42,13 +40,13 @@ public class Alcohol {
 
 
     public void modify(ModifyAlcoholDTO dto) {
-        Optional.ofNullable(dto.getPrice()).ifPresent(p -> price = p);
-        Optional.ofNullable(dto.getAlcoholType()).ifPresent(p -> alcoholType = p);
-        Optional.ofNullable(dto.getName()).ifPresent(p -> name = p);
-        Optional.ofNullable(dto.getProductDate()).ifPresent(p -> productDate = p);
-        Optional.ofNullable(dto.getVolume()).ifPresent(p -> volume = p);
-        Optional.ofNullable(dto.getSeller()).ifPresent(p -> seller = p);
-        Optional.ofNullable(dto.getMadeFrom()).ifPresent(p -> madeFrom = p);
+        ofNullable(dto.getPrice()).ifPresent(p -> this.price = p);
+        ofNullable(dto.getAlcoholType()).ifPresent(at -> this.alcoholType = at);
+        ofNullable(dto.getName()).ifPresent(n -> this.name = n);
+        ofNullable(dto.getProductDate()).ifPresent(pd -> this.productDate = pd);
+        ofNullable(dto.getVolume()).ifPresent(v -> this.volume = v);
+        ofNullable(dto.getSeller()).ifPresent(s -> this.seller = s);
+        ofNullable(dto.getMadeFrom()).ifPresent(mf -> this.madeFrom = mf);
         baseTimeEntity.update();
     }
 
