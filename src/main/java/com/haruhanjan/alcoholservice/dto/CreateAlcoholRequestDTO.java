@@ -2,30 +2,31 @@ package com.haruhanjan.alcoholservice.dto;
 
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class CreateAlcoholRequestDTO {
+
     private String name;
-    private float originVolume;
+    private Double volume;
     private String madeFrom; // 원산지
-    private String seller;
+    private String seller; // USER ID로 넣기 TODO
     private AlcoholType alcoholType;
     private LocalDate productDate;
     @Getter
-    private int price;
+    private Integer price;
 
     public Alcohol toEntity(){
         return Alcohol.builder()
                 .name(name)
                 .price(price)
-                .volume((int) (originVolume*10))
+                .volume(volume)
                 .madeFrom(madeFrom)
                 .seller(seller)
                 .alcoholType(alcoholType)

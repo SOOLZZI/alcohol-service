@@ -15,10 +15,10 @@ public class AlcoholResponseDTO {
     private Long id;
 
     private String name;
-    private float originVolume;
+    private Double volume;
     private String madeFrom; // 원산지
     private String seller;
-    private int price;
+    private Integer price;
     private String alcoholType;
     private LocalDate productDate;
 
@@ -30,7 +30,7 @@ public class AlcoholResponseDTO {
                 .productDate(alcohol.getProductDate())
                 .price(alcohol.getPrice())
                 .seller(alcohol.getSeller())
-                .originVolume((float) alcohol.getVolume()/10)
+                .volume(alcohol.getVolume())
                 .alcoholType(alcohol.getAlcoholType().toString())
                 .build();
     }
