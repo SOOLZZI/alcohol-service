@@ -6,7 +6,7 @@ public enum AlcoholType {
     SPIRIT("증류주"),
     COCKTAIL("칵테일"),
     SAKE("사케"),
-    LIQUOR("고량주="),
+    LIQUOR("고량주"),
     ;
     private final String valueKor;
 
