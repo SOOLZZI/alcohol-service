@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class AlcoholService {
     public AlcoholResponseDTO save(CreateAlcoholRequestDTO dto) {
         Alcohol save = dto.toEntity();
         Alcohol saved = alcoholRepository.save(save);
-        return AlcoholResponseDTO.of(saved);
+        return new AlcoholResponseDTO(saved);
     }
 
     @Transactional
@@ -39,6 +40,9 @@ public class AlcoholService {
 
     public List<AlcoholResponseDTO> getAll() {
         List<Alcohol> targets = alcoholRepository.findAll();
-        return AlcoholResponseDTO.listOf(targets);
+
+        return targets.stream()
+                .map(AlcoholResponseDTO::new)
+                .collect(Collectors.toList());
     }
 }

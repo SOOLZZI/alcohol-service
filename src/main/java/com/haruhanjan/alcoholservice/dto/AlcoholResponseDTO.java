@@ -1,14 +1,12 @@
 package com.haruhanjan.alcoholservice.dto;
 
 import com.haruhanjan.alcoholservice.entity.Alcohol;
-import lombok.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
-@Builder
-@AllArgsConstructor
+
 @Getter
 public class AlcoholResponseDTO {
     // validation 적용
@@ -22,23 +20,19 @@ public class AlcoholResponseDTO {
     private String alcoholType;
     private LocalDate productDate;
 
-    public static AlcoholResponseDTO of(Alcohol alcohol) {
-        return AlcoholResponseDTO.builder()
-                .id(alcohol.getId())
-                .name(alcohol.getName())
-                .madeFrom(alcohol.getMadeFrom())
-                .productDate(alcohol.getProductDate())
-                .price(alcohol.getPrice())
-                .seller(alcohol.getSeller())
-                .volume(alcohol.getVolume())
-                .alcoholType(alcohol.getAlcoholType().toString())
-                .build();
-    }
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    public static List<AlcoholResponseDTO> listOf(List<Alcohol> lists) {
-        return lists.stream()
-                .map(AlcoholResponseDTO::of)
-                .collect(Collectors.toList());
+    public AlcoholResponseDTO(Alcohol entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.volume = entity.getVolume();
+        this.madeFrom = entity.getMadeFrom();
+        this.seller = entity.getSeller();
+        this.price = entity.getPrice();
+        this.alcoholType = entity.getAlcoholType().name();
+        this.productDate = entity.getProductDate();
+        this.createdAt = entity.getBaseTimeEntity().getCreatedAt();
+        this.updatedAt = entity.getBaseTimeEntity().getUpdatedAt();
     }
-
 }

@@ -1,7 +1,6 @@
 package com.haruhanjan.alcoholservice.entity;
 
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.Getter;
 
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
@@ -9,7 +8,9 @@ import java.util.Optional;
 
 @Embeddable
 public class BaseTimeEntity {
+    @Getter
     private LocalDateTime createdAt;
+    @Getter
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
 
