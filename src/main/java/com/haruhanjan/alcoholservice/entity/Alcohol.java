@@ -5,14 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 import static java.util.Optional.ofNullable;
 
-@DynamicInsert
 @Entity
 @Getter
 @Builder
@@ -26,7 +24,7 @@ public class Alcohol {
     private Long id;
 
     private String name;
-    private Double volume; // 도수*10
+    private Double volume;
     private String madeFrom; // 원산지
     private String seller;
 
@@ -34,7 +32,6 @@ public class Alcohol {
     @Enumerated(value = EnumType.STRING)
     private AlcoholType alcoholType;
     private LocalDate productDate;
-
     @Embedded
     private BaseTimeEntity baseTimeEntity;
 
