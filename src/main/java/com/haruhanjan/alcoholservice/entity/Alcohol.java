@@ -33,8 +33,8 @@ public class Alcohol {
     private AlcoholType alcoholType;
     private LocalDate productDate;
     @Embedded
-    private BaseTimeEntity baseTimeEntity;
-
+    @Builder.Default
+    private BaseTimeEntity baseTimeEntity = new BaseTimeEntity();
 
     public void modify(ModifyAlcoholDTO dto) {
         ofNullable(dto.getPrice()).ifPresent(p -> this.price = p);
