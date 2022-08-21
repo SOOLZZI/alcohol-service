@@ -2,7 +2,7 @@ package com.haruhanjan.alcoholservice.service;
 
 import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
 import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
-import com.haruhanjan.alcoholservice.dto.ModifyAlcoholDTO;
+import com.haruhanjan.alcoholservice.dto.ModifyAlcoholRequestDTO;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.repository.AlcoholRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +26,9 @@ public class AlcoholService {
     }
 
     @Transactional
-    public ModifyAlcoholDTO modify(Long id, ModifyAlcoholDTO dto) {
+    public void modify(Long id, ModifyAlcoholRequestDTO dto) {
         Alcohol target = alcoholRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        ModifyAlcoholDTO modified = target.modify(dto);
-        return modified;
+        target.modify(dto);
     }
 
 

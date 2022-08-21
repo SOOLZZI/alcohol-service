@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ModifyAlcoholDTO {
+public class ModifyAlcoholRequestDTO {
     private String name;
     private Double volume;
     private String madeFrom; // 원산지
