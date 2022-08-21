@@ -23,6 +23,7 @@ import static org.mockito.Mockito.when;
 
 
 @Slf4j
+@ExtendWith(SpringExtension.class)
 class AlcoholServiceTest {
 
     @Mock
@@ -63,7 +64,6 @@ class AlcoholServiceTest {
             .build();
 
     @Test
-    @ExtendWith(SpringExtension.class)
     @DisplayName("alcohol 저장이 잘 수행되는가")
     void save() throws Exception {
         //given
@@ -85,7 +85,6 @@ class AlcoholServiceTest {
     }
 
     @Test
-    @ExtendWith(SpringExtension.class)
     @DisplayName("술 변경 테스트_O")
     void modifyTest_O() {
         // given
