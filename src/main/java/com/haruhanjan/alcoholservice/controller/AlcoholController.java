@@ -30,10 +30,10 @@ public class AlcoholController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> patch(@PathVariable Long id,
+    public ResponseEntity<ModifyAlcoholDTO> patch(@PathVariable Long id,
                                       @RequestBody ModifyAlcoholDTO dto) {
-        alcoholService.modify(id, dto);
-        return ResponseEntity.ok().build();
+        ModifyAlcoholDTO result = alcoholService.modify(id, dto);
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/{id}")

@@ -26,9 +26,10 @@ public class AlcoholService {
     }
 
     @Transactional
-    public void modify(Long id, ModifyAlcoholDTO dto) {
+    public ModifyAlcoholDTO modify(Long id, ModifyAlcoholDTO dto) {
         Alcohol target = alcoholRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        target.modify(dto);
+        ModifyAlcoholDTO modified = target.modify(dto);
+        return modified;
     }
 
 

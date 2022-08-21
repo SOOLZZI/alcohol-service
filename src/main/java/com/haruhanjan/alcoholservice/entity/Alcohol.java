@@ -36,7 +36,7 @@ public class Alcohol {
     @Builder.Default
     private BaseTimeEntity baseTimeEntity = new BaseTimeEntity();
 
-    public void modify(ModifyAlcoholDTO dto) {
+    public ModifyAlcoholDTO modify(ModifyAlcoholDTO dto) {
         ofNullable(dto.getPrice()).ifPresent(p -> this.price = p);
         ofNullable(dto.getAlcoholType()).ifPresent(at -> this.alcoholType = at);
         ofNullable(dto.getName()).ifPresent(n -> this.name = n);
@@ -45,6 +45,7 @@ public class Alcohol {
         ofNullable(dto.getSeller()).ifPresent(s -> this.seller = s);
         ofNullable(dto.getMadeFrom()).ifPresent(mf -> this.madeFrom = mf);
         baseTimeEntity.update();
+        return dto;
     }
 
     public void delete() {
