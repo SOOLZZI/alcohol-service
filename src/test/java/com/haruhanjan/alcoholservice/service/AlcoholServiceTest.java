@@ -2,7 +2,7 @@ package com.haruhanjan.alcoholservice.service;
 
 import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
 import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
-import com.haruhanjan.alcoholservice.dto.ModifyAlcoholDTO;
+import com.haruhanjan.alcoholservice.dto.ModifyAlcoholRequestDTO;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
 import com.haruhanjan.alcoholservice.repository.AlcoholRepository;
@@ -31,33 +31,42 @@ class AlcoholServiceTest {
     @InjectMocks
     private AlcoholService alcoholService;
 
+    CreateAlcoholRequestDTO sample1 = new CreateAlcoholRequestDTO(
+            "소주",
+            10000,
+            10.8,
+            "한국",
+            "asdf",
+            AlcoholType.SPIRIT,
+            LocalDate.of(2022, 10, 10)
+    );
+
+    Alcohol returnSample = Alcohol.builder()
+            .id(1L)
+            .name("소주")
+            .price(10000)
+            .alcoholType(AlcoholType.SPIRIT)
+            .seller("asdf")
+            .volume(10.8)
+            .productDate(LocalDate.of(2022, 10, 10))
+            .madeFrom("한국")
+            .build();
+    Alcohol modifiedSample = Alcohol.builder()
+            .id(1L)
+            .name("카스")
+            .alcoholType(AlcoholType.BEER)
+            .price(10000)
+            .seller("asdf")
+            .volume(10.8)
+            .productDate(LocalDate.of(2022, 10, 10))
+            .madeFrom("한국")
+            .build();
 
     @Test
     @ExtendWith(SpringExtension.class)
     @DisplayName("alcohol 저장이 잘 수행되는가")
     void save() throws Exception {
         //given
-        CreateAlcoholRequestDTO sample1 = new CreateAlcoholRequestDTO(
-                "소주",
-                10000,
-                10.8,
-                "한국",
-                "asdf",
-                AlcoholType.SPIRIT,
-                LocalDate.of(2022, 10, 10)
-        );
-
-        Alcohol returnSample = Alcohol.builder()
-                .id(1L)
-                .name("소주")
-                .price(10000)
-                .alcoholType(AlcoholType.SPIRIT)
-                .seller("asdf")
-                .volume(10.8)
-                .productDate(LocalDate.of(2022, 10, 10))
-                .madeFrom("한국")
-                .build();
-
         when(alcoholRepository.save(any())).thenReturn(returnSample);
 
         //when
@@ -80,25 +89,14 @@ class AlcoholServiceTest {
     @DisplayName("술 변경 테스트_O")
     void modifyTest_O() {
         // given
-        Alcohol modifiedSample = Alcohol.builder()
-                .id(1L)
-                .name("카스")
-                .price(10000)
-                .alcoholType(AlcoholType.BEER)
-                .seller("asdf")
-                .volume(10.8)
-                .productDate(LocalDate.of(2022, 10, 10))
-                .madeFrom("한국")
-                .build();
-
         when(alcoholRepository.findById(any())).thenReturn(Optional.of(modifiedSample));
 
-        ModifyAlcoholDTO modifyAlcoholDTO = new ModifyAlcoholDTO();
-        modifyAlcoholDTO.setAlcoholType(AlcoholType.BEER);
-        modifyAlcoholDTO.setName("카스");
+        ModifyAlcoholRequestDTO modifyDto = new ModifyAlcoholRequestDTO();
+        modifyDto.setAlcoholType(AlcoholType.BEER);
+        modifyDto.setName("카스");
 
         // when
-        ModifyAlcoholDTO modified = alcoholService.modify(modifiedSample.getId(), modifyAlcoholDTO);
+        alcoholService.modify(modifiedSample.getId(), modifyDto);
         Alcohol result = alcoholRepository.findById(modifiedSample.getId()).orElse(null);
 
         // then
