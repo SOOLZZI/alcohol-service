@@ -1,6 +1,6 @@
 package com.haruhanjan.alcoholservice.entity;
 
-import com.haruhanjan.alcoholservice.dto.ModifyAlcoholDTO;
+import com.haruhanjan.alcoholservice.dto.ModifyAlcoholRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,7 +36,7 @@ public class Alcohol {
     @Builder.Default
     private BaseTimeEntity baseTimeEntity = new BaseTimeEntity();
 
-    public void modify(ModifyAlcoholDTO dto) {
+    public void modify(ModifyAlcoholRequestDTO dto) {
         ofNullable(dto.getPrice()).ifPresent(p -> this.price = p);
         ofNullable(dto.getAlcoholType()).ifPresent(at -> this.alcoholType = at);
         ofNullable(dto.getName()).ifPresent(n -> this.name = n);

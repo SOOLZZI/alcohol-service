@@ -2,7 +2,7 @@ package com.haruhanjan.alcoholservice.controller;
 
 import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
 import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
-import com.haruhanjan.alcoholservice.dto.ModifyAlcoholDTO;
+import com.haruhanjan.alcoholservice.dto.ModifyAlcoholRequestDTO;
 import com.haruhanjan.alcoholservice.service.AlcoholService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,7 +31,7 @@ public class AlcoholController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Void> patch(@PathVariable Long id,
-                                      @RequestBody ModifyAlcoholDTO dto) {
+                                      @RequestBody ModifyAlcoholRequestDTO dto) {
         alcoholService.modify(id, dto);
         return ResponseEntity.ok().build();
     }
