@@ -14,7 +14,10 @@ import java.time.LocalDate;
 @Setter
 public class ModifyAlcoholRequestDTO {
     private String name;
-    private Double volume;
+    private Double alcoholByVolume;
+    private Integer sugarDegree;
+    private Integer acidDegree;
+    private Boolean isSparkling;
     private String madeFrom; // 원산지
     private String seller;
     private Integer price;

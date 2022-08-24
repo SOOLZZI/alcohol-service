@@ -30,7 +30,7 @@ class CreateAlcoholRequestDTOTest {
         //then
         assertThat(result.getName()).isEqualTo(name);
         assertThat(result.getPrice()).isEqualTo(price);
-        assertThat(result.getVolume()).isEqualTo(volume);
+        assertThat(result.getAlcoholByVolume()).isEqualTo(volume);
         assertThat(result.getMadeFrom()).isEqualTo(madeFrom);
         assertThat(result.getSeller()).isEqualTo(seller);
         assertThat(result.getAlcoholType()).isEqualTo(alcoholType);

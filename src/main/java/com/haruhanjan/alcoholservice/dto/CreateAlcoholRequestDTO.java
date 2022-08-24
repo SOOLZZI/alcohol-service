@@ -18,7 +18,10 @@ public class CreateAlcoholRequestDTO {
 
     @Getter
     private Integer price;
-    private Double volume;
+    private Double alcoholByVolume;
+    private Integer sugarDegree;
+    private Integer acidDegree;
+    private Boolean isSparkling;
     private String madeFrom; // 원산지
     private String seller; // USER ID로 넣기 TODO
     private AlcoholType alcoholType;
@@ -28,7 +31,10 @@ public class CreateAlcoholRequestDTO {
         return Alcohol.builder()
                 .name(name)
                 .price(price)
-                .volume(volume)
+                .alcoholByVolume(alcoholByVolume)
+                .sugarDegree(sugarDegree)
+                .acidDegree(acidDegree)
+                .isSparkling(isSparkling)
                 .madeFrom(madeFrom)
                 .seller(seller)
                 .alcoholType(alcoholType)

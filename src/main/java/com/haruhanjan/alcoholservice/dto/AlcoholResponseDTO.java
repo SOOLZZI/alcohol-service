@@ -13,7 +13,10 @@ public class AlcoholResponseDTO {
     private Long id;
 
     private String name;
-    private Double volume;
+    private Double alcoholByVolume;
+    private Integer sugarDegree;
+    private Integer acidDegree;
+    private Boolean isSparkling;
     private String madeFrom; // 원산지
     private String seller;
     private Integer price;
@@ -26,7 +29,10 @@ public class AlcoholResponseDTO {
     public AlcoholResponseDTO(Alcohol entity) {
         this.id = entity.getId();
         this.name = entity.getName();
-        this.volume = entity.getVolume();
+        this.alcoholByVolume = entity.getAlcoholByVolume();
+        this.acidDegree = entity.getAcidDegree();
+        this.isSparkling = entity.getIsSparkling();
+        this.sugarDegree = entity.getSugarDegree();
         this.madeFrom = entity.getMadeFrom();
         this.seller = entity.getSeller();
         this.price = entity.getPrice();
