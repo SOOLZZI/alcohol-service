@@ -8,9 +8,11 @@ import org.jetbrains.annotations.NotNull;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +22,7 @@ public class CreateAlcoholRequestDTO {
     private String name;
 
     @Getter
-    @NotBlank
+    @NotNull
     private Integer price;
     @NotNull
     @Min(0)
