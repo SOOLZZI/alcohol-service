@@ -32,15 +32,20 @@ class AlcoholServiceTest {
     @InjectMocks
     private AlcoholService alcoholService;
 
-    CreateAlcoholRequestDTO sample1 = new CreateAlcoholRequestDTO(
-            "소주",
-            10000,
-            10.8,
-            "한국",
-            "asdf",
-            AlcoholType.SPIRIT,
-            LocalDate.of(2022, 10, 10)
-    );
+
+    CreateAlcoholRequestDTO sample1 = CreateAlcoholRequestDTO.builder()
+            .acidDegree(1)
+            .isSparkling(true)
+            .alcoholByVolume(10.3)
+            .alcoholType(AlcoholType.WINE)
+            .seller("asdf")
+            .sugarDegree(2)
+            .madeFrom("한국")
+            .name("와인")
+            .price(12000)
+            .productDate(LocalDate.of(2022,10,10))
+            .expiryDate(LocalDate.of(2022,11,11))
+            .build();
 
     Alcohol returnSample = Alcohol.builder()
             .id(1L)
@@ -48,7 +53,7 @@ class AlcoholServiceTest {
             .price(10000)
             .alcoholType(AlcoholType.SPIRIT)
             .seller("asdf")
-            .volume(10.8)
+            .alcoholByVolume(10.8)
             .productDate(LocalDate.of(2022, 10, 10))
             .madeFrom("한국")
             .build();
@@ -58,7 +63,7 @@ class AlcoholServiceTest {
             .alcoholType(AlcoholType.BEER)
             .price(10000)
             .seller("asdf")
-            .volume(10.8)
+            .alcoholByVolume(10.8)
             .productDate(LocalDate.of(2022, 10, 10))
             .madeFrom("한국")
             .build();
@@ -76,7 +81,7 @@ class AlcoholServiceTest {
         log.info("saved ID :{}", result.getId());
         assertThat("소주").isEqualTo(result.getName());
         assertThat(10000).isEqualTo(result.getPrice());
-        assertThat(10.8).isEqualTo(result.getVolume());
+        assertThat(10.8).isEqualTo(result.getAlcoholByVolume());
         assertThat("한국").isEqualTo(result.getMadeFrom());
         assertThat("asdf").isEqualTo(result.getSeller());
         assertThat(AlcoholType.SPIRIT.name()).isEqualTo(result.getAlcoholType());

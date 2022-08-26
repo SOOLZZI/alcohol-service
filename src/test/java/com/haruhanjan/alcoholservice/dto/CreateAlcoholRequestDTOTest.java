@@ -22,11 +22,23 @@ class CreateAlcoholRequestDTOTest {
         String seller = "사용자1";
         AlcoholType alcoholType = AlcoholType.SPIRIT;
         LocalDate productDate = LocalDate.of(1972, 11, 20);
-        CreateAlcoholRequestDTO dto = new CreateAlcoholRequestDTO(
-                name, price, volume, madeFrom, seller, alcoholType, productDate
-                );
+        CreateAlcoholRequestDTO dto = CreateAlcoholRequestDTO.builder()
+                .acidDegree(1)
+                .isSparkling(true)
+                .alcoholByVolume(10.3)
+                .alcoholType(AlcoholType.WINE)
+                .seller("asdf")
+                .sugarDegree(2)
+                .madeFrom("한국")
+                .name("와인")
+                .price(12000)
+                .productDate(LocalDate.of(2022,10,10))
+                .expiryDate(LocalDate.of(2022,11,11))
+                .build();
+
         //when
         Alcohol result = dto.toEntity();
+
         //then
         assertThat(result.getName()).isEqualTo(name);
         assertThat(result.getPrice()).isEqualTo(price);
