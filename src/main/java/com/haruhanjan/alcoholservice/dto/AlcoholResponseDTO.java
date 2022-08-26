@@ -22,6 +22,8 @@ public class AlcoholResponseDTO {
     private Integer price;
     private String alcoholType;
     private LocalDate productDate;
+    private LocalDate expiryDate;
+
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -38,6 +40,7 @@ public class AlcoholResponseDTO {
         this.price = entity.getPrice();
         this.alcoholType = entity.getAlcoholType().name();
         this.productDate = entity.getProductDate();
+        this.expiryDate = entity.getExpiryDate();
         this.createdAt = entity.getBaseTimeEntity().getCreatedAt();
         this.updatedAt = entity.getBaseTimeEntity().getUpdatedAt();
     }

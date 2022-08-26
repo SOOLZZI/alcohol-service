@@ -23,4 +23,5 @@ public class ModifyAlcoholRequestDTO {
     private Integer price;
     private AlcoholType alcoholType;
     private LocalDate productDate;
+    private LocalDate expiryDate;
 }

@@ -40,6 +40,7 @@ public class Alcohol {
     @Enumerated(value = EnumType.STRING)
     private AlcoholType alcoholType;
     private LocalDate productDate;
+    private LocalDate expiryDate;
     @Embedded
     @Builder.Default
     private BaseTimeEntity baseTimeEntity = new BaseTimeEntity();
@@ -49,6 +50,7 @@ public class Alcohol {
         ofNullable(dto.getAlcoholType()).ifPresent(at -> this.alcoholType = at);
         ofNullable(dto.getName()).ifPresent(n -> this.name = n);
         ofNullable(dto.getProductDate()).ifPresent(pd -> this.productDate = pd);
+        ofNullable(dto.getExpiryDate()).ifPresent(ed -> this.productDate = ed);
         ofNullable(dto.getAlcoholByVolume()).ifPresent(v -> this.alcoholByVolume = v);
         ofNullable(dto.getSeller()).ifPresent(s -> this.seller = s);
         ofNullable(dto.getMadeFrom()).ifPresent(mf -> this.madeFrom = mf);
