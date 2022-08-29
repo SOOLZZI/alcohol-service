@@ -1,6 +1,6 @@
 package com.haruhanjan.alcoholservice.entity;
 
-import com.haruhanjan.alcoholservice.dto.ModifyAlcoholRequestDTO;
+import com.haruhanjan.alcoholservice.dto.AlcoholRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
-import static java.util.Optional.ofNullable;
 
 @Entity
 @Getter
@@ -45,18 +43,18 @@ public class Alcohol {
     @Builder.Default
     private BaseTimeEntity baseTimeEntity = new BaseTimeEntity();
 
-    public void modify(ModifyAlcoholRequestDTO dto) {
-        ofNullable(dto.getPrice()).ifPresent(p -> this.price = p);
-        ofNullable(dto.getAlcoholType()).ifPresent(at -> this.alcoholType = at);
-        ofNullable(dto.getName()).ifPresent(n -> this.name = n);
-        ofNullable(dto.getProductDate()).ifPresent(pd -> this.productDate = pd);
-        ofNullable(dto.getExpiryDate()).ifPresent(ed -> this.productDate = ed);
-        ofNullable(dto.getAlcoholByVolume()).ifPresent(v -> this.alcoholByVolume = v);
-        ofNullable(dto.getSeller()).ifPresent(s -> this.seller = s);
-        ofNullable(dto.getMadeFrom()).ifPresent(mf -> this.madeFrom = mf);
-        ofNullable(dto.getSugarDegree()).ifPresent(sd -> this.sugarDegree = sd);
-        ofNullable(dto.getAcidDegree()).ifPresent(ad -> this.acidDegree = ad);
-        ofNullable(dto.getIsSparkling()).ifPresent(is -> this.isSparkling = is);
+    public void modify(AlcoholRequestDTO dto) {
+        this.sugarDegree=dto.getSugarDegree();
+        this.productDate=dto.getProductDate();
+        this.acidDegree=dto.getAcidDegree();
+        this.isSparkling=dto.getIsSparkling();
+        this.madeFrom=dto.getMadeFrom();
+        this.alcoholType=dto.getAlcoholType();
+        this.expiryDate=dto.getExpiryDate();
+        this.price=dto.getPrice();
+        this.name=dto.getName();
+        this.seller=dto.getSeller();
+        this.alcoholByVolume=dto.getAlcoholByVolume();
         baseTimeEntity.update();
     }
 

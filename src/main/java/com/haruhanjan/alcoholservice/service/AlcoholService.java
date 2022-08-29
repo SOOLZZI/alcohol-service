@@ -1,8 +1,7 @@
 package com.haruhanjan.alcoholservice.service;
 
 import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
-import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
-import com.haruhanjan.alcoholservice.dto.ModifyAlcoholRequestDTO;
+import com.haruhanjan.alcoholservice.dto.AlcoholRequestDTO;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.repository.AlcoholRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +18,14 @@ public class AlcoholService {
 
     private final AlcoholRepository alcoholRepository; // field injection
 
-    public AlcoholResponseDTO save(CreateAlcoholRequestDTO dto) {
+    public AlcoholResponseDTO save(AlcoholRequestDTO dto) {
         Alcohol save = dto.toEntity();
         Alcohol saved = alcoholRepository.save(save);
         return new AlcoholResponseDTO(saved);
     }
 
     @Transactional
-    public void modify(Long id, ModifyAlcoholRequestDTO dto) {
+    public void modify(Long id, AlcoholRequestDTO dto) {
         Alcohol target = alcoholRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         target.modify(dto);
     }

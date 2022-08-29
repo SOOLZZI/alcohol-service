@@ -1,8 +1,7 @@
 package com.haruhanjan.alcoholservice.controller;
 
 import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
-import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
-import com.haruhanjan.alcoholservice.dto.ModifyAlcoholRequestDTO;
+import com.haruhanjan.alcoholservice.dto.AlcoholRequestDTO;
 import com.haruhanjan.alcoholservice.service.AlcoholService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,14 +24,14 @@ public class AlcoholController {
     }
 
     @PostMapping
-    public ResponseEntity<AlcoholResponseDTO> create(@RequestBody @Valid CreateAlcoholRequestDTO dto) {
+    public ResponseEntity<AlcoholResponseDTO> create(@RequestBody @Valid AlcoholRequestDTO dto) {
         AlcoholResponseDTO result = alcoholService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Void> patch(@PathVariable Long id,
-                                      @RequestBody ModifyAlcoholRequestDTO dto) {
+                                      @RequestBody @Valid AlcoholRequestDTO dto) {
         alcoholService.modify(id, dto);
         return ResponseEntity.ok().build();
     }
