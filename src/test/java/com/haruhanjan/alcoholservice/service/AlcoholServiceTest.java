@@ -1,8 +1,7 @@
 package com.haruhanjan.alcoholservice.service;
 
 import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
-import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
-import com.haruhanjan.alcoholservice.dto.ModifyAlcoholRequestDTO;
+import com.haruhanjan.alcoholservice.dto.AlcoholRequestDTO;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
 import com.haruhanjan.alcoholservice.repository.AlcoholRepository;
@@ -33,7 +32,7 @@ class AlcoholServiceTest {
     private AlcoholService alcoholService;
 
 
-    CreateAlcoholRequestDTO sample1 = CreateAlcoholRequestDTO.builder()
+    AlcoholRequestDTO sample1 = AlcoholRequestDTO.builder()
             .acidDegree(1)
             .isSparkling(true)
             .alcoholByVolume(10.3)
@@ -95,7 +94,7 @@ class AlcoholServiceTest {
         // given
         when(alcoholRepository.findById(any())).thenReturn(Optional.of(modifiedSample));
 
-        ModifyAlcoholRequestDTO modifyDto = new ModifyAlcoholRequestDTO();
+        AlcoholRequestDTO modifyDto = new AlcoholRequestDTO();
         modifyDto.setAlcoholType(AlcoholType.BEER);
         modifyDto.setName("카스");
 

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CreateAlcoholRequestDTOTest {
+class AlcoholRequestDTOTest {
 
     @Test
     @DisplayName("엔티티 변환이 잘 되는가")
@@ -22,7 +22,7 @@ class CreateAlcoholRequestDTOTest {
         String seller = "사용자1";
         AlcoholType alcoholType = AlcoholType.SPIRIT;
         LocalDate productDate = LocalDate.of(1972, 11, 20);
-        CreateAlcoholRequestDTO dto = CreateAlcoholRequestDTO.builder()
+        AlcoholRequestDTO dto = AlcoholRequestDTO.builder()
                 .acidDegree(1)
                 .isSparkling(true)
                 .alcoholByVolume(10.3)

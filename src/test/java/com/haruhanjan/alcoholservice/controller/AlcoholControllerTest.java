@@ -3,7 +3,7 @@ package com.haruhanjan.alcoholservice.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
-import com.haruhanjan.alcoholservice.dto.CreateAlcoholRequestDTO;
+import com.haruhanjan.alcoholservice.dto.AlcoholRequestDTO;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
 import com.haruhanjan.alcoholservice.service.AlcoholService;
@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -41,7 +39,7 @@ class AlcoholControllerTest {
     private AlcoholController alcoholController;
 
     private MockMvc mockMvc; // http 호출
-    CreateAlcoholRequestDTO dto = CreateAlcoholRequestDTO.builder()
+    AlcoholRequestDTO dto = AlcoholRequestDTO.builder()
             .name("카스")
             .price(1234)
             .madeFrom("한국")
