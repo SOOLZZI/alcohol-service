@@ -30,21 +30,21 @@ class AlcoholServiceTest {
 
     @InjectMocks
     private AlcoholService alcoholService;
-
-
-    AlcoholRequestDTO sample1 = AlcoholRequestDTO.builder()
-            .acidDegree(1)
-            .isSparkling(true)
-            .alcoholByVolume(10.3)
-            .alcoholType(AlcoholType.WINE)
-            .seller("asdf")
-            .sugarDegree(2)
-            .madeFrom("한국")
-            .name("와인")
-            .price(12000)
-            .productDate(LocalDate.of(2022,10,10))
-            .expiryDate(LocalDate.of(2022,11,11))
-            .build();
+    private AlcoholRequestDTO getRequestSample() {
+        return AlcoholRequestDTO.builder()
+                .acidDegree(1)
+                .isSparkling(true)
+                .alcoholByVolume(10.3)
+                .alcoholType(AlcoholType.WINE)
+                .seller("asdf")
+                .sugarDegree(2)
+                .madeFrom("한국")
+                .name("와인")
+                .price(12000)
+                .productDate(LocalDate.of(2022,10,10))
+                .expiryDate(LocalDate.of(2022,11,11))
+                .build();
+    }
 
     Alcohol returnSample = Alcohol.builder()
             .id(1L)
@@ -58,13 +58,17 @@ class AlcoholServiceTest {
             .build();
     Alcohol modifiedSample = Alcohol.builder()
             .id(1L)
-            .name("카스")
+            .acidDegree(1)
+            .isSparkling(true)
+            .alcoholByVolume(10.3)
             .alcoholType(AlcoholType.BEER)
-            .price(10000)
             .seller("asdf")
-            .alcoholByVolume(10.8)
-            .productDate(LocalDate.of(2022, 10, 10))
+            .sugarDegree(2)
             .madeFrom("한국")
+            .name("카스")
+            .price(10000)
+            .productDate(LocalDate.of(2022,10,10))
+            .expiryDate(LocalDate.of(2022,11,11))
             .build();
 
     @Test
@@ -74,7 +78,7 @@ class AlcoholServiceTest {
         when(alcoholRepository.save(any())).thenReturn(returnSample);
 
         //when
-        AlcoholResponseDTO result = alcoholService.save(sample1);
+        AlcoholResponseDTO result = alcoholService.save(getRequestSample());
 
         //then
         log.info("saved ID :{}", result.getId());
@@ -94,18 +98,20 @@ class AlcoholServiceTest {
         // given
         when(alcoholRepository.findById(any())).thenReturn(Optional.of(modifiedSample));
 
-        AlcoholRequestDTO modifyDto = new AlcoholRequestDTO();
+        AlcoholRequestDTO modifyDto = getRequestSample();
+
         modifyDto.setAlcoholType(AlcoholType.BEER);
         modifyDto.setName("카스");
+        modifyDto.setPrice(10000);
 
         // when
         alcoholService.modify(modifiedSample.getId(), modifyDto);
         Alcohol result = alcoholRepository.findById(modifiedSample.getId()).orElse(null);
 
         // then
-        assertThat("카스").isEqualTo(result.getName());
+        assertThat(result.getName()).isEqualTo("카스");
         assertThat(AlcoholType.BEER.name()).isEqualTo(result.getAlcoholType().toString());
-        assertThat(10000).isEqualTo(result.getPrice());
+        assertThat(result.getPrice()).isEqualTo(10000);
     }
 
 }

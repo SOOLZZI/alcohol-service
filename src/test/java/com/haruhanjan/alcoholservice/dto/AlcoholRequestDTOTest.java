@@ -22,18 +22,21 @@ class AlcoholRequestDTOTest {
         String seller = "사용자1";
         AlcoholType alcoholType = AlcoholType.SPIRIT;
         LocalDate productDate = LocalDate.of(1972, 11, 20);
+        Integer acidDegree = 1;
+        boolean isSparkling = true;
+        Integer sugerDegree = 2;
+
         AlcoholRequestDTO dto = AlcoholRequestDTO.builder()
-                .acidDegree(1)
-                .isSparkling(true)
-                .alcoholByVolume(10.3)
-                .alcoholType(AlcoholType.WINE)
-                .seller("asdf")
-                .sugarDegree(2)
-                .madeFrom("한국")
-                .name("와인")
-                .price(12000)
-                .productDate(LocalDate.of(2022,10,10))
-                .expiryDate(LocalDate.of(2022,11,11))
+                .acidDegree(acidDegree)
+                .isSparkling(isSparkling)
+                .alcoholByVolume(volume)
+                .alcoholType(alcoholType)
+                .seller(seller)
+                .sugarDegree(sugerDegree)
+                .madeFrom(madeFrom)
+                .name(name)
+                .price(price)
+                .productDate(productDate)
                 .build();
 
         //when
