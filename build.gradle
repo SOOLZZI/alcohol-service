@@ -18,7 +18,7 @@ jib {
     }
 }
 
-group = 'com.haru-hanjan'
+group = 'com.haruhanjan'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
