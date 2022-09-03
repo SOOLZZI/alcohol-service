@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -22,19 +22,22 @@ public class Alcohol {
     @Column(name = "alcohol_id")
     private Long id;
 
-    @NotNull
+
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private Double alcoholByVolume;
     private Integer sugarDegree;
     private Integer acidDegree;
     private Boolean isSparkling;
-    @NotNull
+    @Column(nullable = false)
     private String madeFrom; // 원산지
+    @Column(nullable = false)
     private String seller;
 
-    @NotNull
+    @Column(nullable = false)
     private Integer price;
-    @NotNull
+    @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private AlcoholType alcoholType;
     private LocalDate productDate;
