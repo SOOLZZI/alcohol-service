@@ -41,8 +41,6 @@ class AlcoholServiceTest {
                 .madeFrom("한국")
                 .name("와인")
                 .price(12000)
-                .productDate(LocalDate.of(2022,10,10))
-                .expiryDate(LocalDate.of(2022,11,11))
                 .build();
     }
 
@@ -53,7 +51,6 @@ class AlcoholServiceTest {
             .alcoholType(AlcoholType.SPIRIT)
             .seller("asdf")
             .alcoholByVolume(10.8)
-            .productDate(LocalDate.of(2022, 10, 10))
             .madeFrom("한국")
             .build();
     Alcohol modifiedSample = Alcohol.builder()
@@ -67,8 +64,6 @@ class AlcoholServiceTest {
             .madeFrom("한국")
             .name("카스")
             .price(10000)
-            .productDate(LocalDate.of(2022,10,10))
-            .expiryDate(LocalDate.of(2022,11,11))
             .build();
 
     @Test

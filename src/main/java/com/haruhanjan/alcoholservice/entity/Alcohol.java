@@ -40,23 +40,22 @@ public class Alcohol {
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private AlcoholType alcoholType;
-    private LocalDate productDate;
-    private LocalDate expiryDate;
+    private Integer storagePeriod; // 일(Day) 단위
+
     @Embedded
     @Builder.Default
     private BaseTimeEntity baseTimeEntity = new BaseTimeEntity();
 
     public void modify(AlcoholRequestDTO dto) {
         this.sugarDegree=dto.getSugarDegree();
-        this.productDate=dto.getProductDate();
         this.acidDegree=dto.getAcidDegree();
         this.isSparkling=dto.getIsSparkling();
         this.madeFrom=dto.getMadeFrom();
         this.alcoholType=dto.getAlcoholType();
-        this.expiryDate=dto.getExpiryDate();
         this.price=dto.getPrice();
         this.name=dto.getName();
         this.seller=dto.getSeller();
+        this.storagePeriod=dto.getStoragePeriod();
         this.alcoholByVolume=dto.getAlcoholByVolume();
         baseTimeEntity.update();
     }

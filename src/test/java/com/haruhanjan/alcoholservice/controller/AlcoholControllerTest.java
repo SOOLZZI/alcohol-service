@@ -54,7 +54,6 @@ class AlcoholControllerTest {
             .alcoholType(AlcoholType.BEER)
             .seller("나")
             .alcoholByVolume(12.3)
-            .productDate(LocalDate.of(2022, 10, 10))
             .madeFrom("한국")
             .build();
 

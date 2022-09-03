@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Getter
 public class AlcoholResponseDTO {
-    // validation 적용
     private Long id;
 
     private String name;
@@ -21,12 +20,8 @@ public class AlcoholResponseDTO {
     private String seller;
     private Integer price;
     private String alcoholType;
-    private LocalDate productDate;
-    private LocalDate expiryDate;
+    private Integer storagePeriod;
 
-
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
     public AlcoholResponseDTO(Alcohol entity) {
         this.id = entity.getId();
@@ -39,9 +34,6 @@ public class AlcoholResponseDTO {
         this.seller = entity.getSeller();
         this.price = entity.getPrice();
         this.alcoholType = entity.getAlcoholType().name();
-        this.productDate = entity.getProductDate();
-        this.expiryDate = entity.getExpiryDate();
-        this.createdAt = entity.getBaseTimeEntity().getCreatedAt();
-        this.updatedAt = entity.getBaseTimeEntity().getUpdatedAt();
+        this.storagePeriod = entity.getStoragePeriod();
     }
 }

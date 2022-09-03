@@ -24,7 +24,7 @@ class AlcoholRequestDTOTest {
         LocalDate productDate = LocalDate.of(1972, 11, 20);
         Integer acidDegree = 1;
         boolean isSparkling = true;
-        Integer sugerDegree = 2;
+        Integer sugarDegree = 2;
 
         AlcoholRequestDTO dto = AlcoholRequestDTO.builder()
                 .acidDegree(acidDegree)
@@ -32,11 +32,10 @@ class AlcoholRequestDTOTest {
                 .alcoholByVolume(volume)
                 .alcoholType(alcoholType)
                 .seller(seller)
-                .sugarDegree(sugerDegree)
+                .sugarDegree(sugarDegree)
                 .madeFrom(madeFrom)
                 .name(name)
                 .price(price)
-                .productDate(productDate)
                 .build();
 
         //when
@@ -49,7 +48,6 @@ class AlcoholRequestDTOTest {
         assertThat(result.getMadeFrom()).isEqualTo(madeFrom);
         assertThat(result.getSeller()).isEqualTo(seller);
         assertThat(result.getAlcoholType()).isEqualTo(alcoholType);
-        assertThat(result.getProductDate()).isEqualTo(productDate);
 
     }
 
