@@ -3,11 +3,11 @@ package com.haruhanjan.alcoholservice.dto;
 import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.entity.AlcoholType;
 import lombok.*;
-import org.jetbrains.annotations.NotNull;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Setter
@@ -41,8 +41,7 @@ public class AlcoholRequestDTO {
     @NotNull
     private AlcoholType alcoholType;
 
-    private LocalDate productDate;
-    private LocalDate expiryDate;
+    private Integer storagePeriod;
 
 
     public Alcohol toEntity(){
@@ -56,8 +55,7 @@ public class AlcoholRequestDTO {
                 .madeFrom(madeFrom)
                 .seller(seller)
                 .alcoholType(alcoholType)
-                .productDate(productDate)
-                .expiryDate(expiryDate)
+                .storagePeriod(storagePeriod)
                 .build();
     }
 }

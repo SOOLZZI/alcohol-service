@@ -29,6 +29,12 @@ public class AlcoholController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<AlcoholResponseDTO> get(@PathVariable Long id){
+        AlcoholResponseDTO result = alcoholService.get(id);
+        return ResponseEntity.ok(result);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Void> patch(@PathVariable Long id,
                                       @RequestBody @Valid AlcoholRequestDTO dto) {
