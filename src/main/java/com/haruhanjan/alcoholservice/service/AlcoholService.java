@@ -6,6 +6,8 @@ import com.haruhanjan.alcoholservice.entity.Alcohol;
 import com.haruhanjan.alcoholservice.repository.AlcoholRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,8 +41,8 @@ public class AlcoholService {
         target.delete();
     }
 
-    public List<AlcoholResponseDTO> getAll() {
-        List<Alcohol> targets = alcoholRepository.findAll();
+    public List<AlcoholResponseDTO> getAll(Pageable pageable) {
+        Page<Alcohol> targets = alcoholRepository.findAll(pageable);
         return targets.stream()
             .filter(t -> !t.getBaseTimeEntity().isDeleted())
             .map(AlcoholResponseDTO::new)

@@ -4,6 +4,8 @@ import com.haruhanjan.alcoholservice.dto.AlcoholResponseDTO;
 import com.haruhanjan.alcoholservice.dto.AlcoholRequestDTO;
 import com.haruhanjan.alcoholservice.service.AlcoholService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +16,14 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/alcohol")
+@Slf4j
 public class AlcoholController {
     private final AlcoholService alcoholService;
 
     @GetMapping
-    public ResponseEntity<List<AlcoholResponseDTO>> readAll() {
-        List<AlcoholResponseDTO> result = alcoholService.getAll();
+    public ResponseEntity<List<AlcoholResponseDTO>> readAll(Pageable pageable) {
+        log.info("pageable: {}, {}, {}",pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
+        List<AlcoholResponseDTO> result = alcoholService.getAll(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

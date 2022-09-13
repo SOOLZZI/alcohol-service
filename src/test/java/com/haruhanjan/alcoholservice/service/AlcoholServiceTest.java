@@ -83,7 +83,6 @@ class AlcoholServiceTest {
         assertThat("한국").isEqualTo(result.getMadeFrom());
         assertThat("asdf").isEqualTo(result.getSeller());
         assertThat(AlcoholType.SPIRIT.name()).isEqualTo(result.getAlcoholType());
-        assertThat(LocalDate.of(2022, 10, 10)).isEqualTo(result.getProductDate());
 
     }
 
