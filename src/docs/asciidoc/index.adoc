@@ -1,0 +1,22 @@
+= Recipe-server REST API Guide
+Always0ne;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+[[alcohol-get-all]]
+=== 알코올 전체 조회
+operation::alcohol-get-all[snippets='http-request,request-fields,http-response,response-fields']
+
+[[alcohol-get-one]]
+=== 알코올 단일 조회
+operation::alcohol-get-one[snippets='http-request,request-fields,http-response,response-fields']
+
+[[alcohol-post]]
+=== 알코올 저장
+operation::alcohol-post[snippets='http-request,request-fields,http-response,response-fields']
