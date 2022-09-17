@@ -2,9 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.7.2'
     id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'com.google.cloud.tools.jib' version '3.2.1'
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
     id 'java'
-
-    id 'org.asciidoctor.jvm.convert' version "3.3.2"
 }
 
 jib {
@@ -28,6 +27,8 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+
+    asciidoctorExt
 }
 
 ext {
@@ -94,4 +95,10 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    configurations 'asciidoctorExt'
+    dependsOn test
 }
