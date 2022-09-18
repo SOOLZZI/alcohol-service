@@ -11,12 +11,22 @@ Always0ne;
 
 [[alcohol-get-all]]
 === 알코올 전체 조회
-operation::alcohol-get-all[snippets='http-request,request-fields,http-response,response-fields']
+operation::alcohol-get-all[snippets='http-request,http-response,response-fields']
 
 [[alcohol-get-one]]
 === 알코올 단일 조회
-operation::alcohol-get-one[snippets='http-request,request-fields,http-response,response-fields']
+operation::alcohol-get-one[snippets='http-request,http-response,response-fields']
 
 [[alcohol-post]]
 === 알코올 저장
 operation::alcohol-post[snippets='http-request,request-fields,http-response,response-fields']
+
+[[alcohol-put-by-id]]
+=== 알코올 정보 수정
+operation::alcohol-put-by-id[snippets='http-request,request-fields,http-response']
+
+[[alcohol-delete-by-id]]
+=== 알코올 삭제 (논리 삭제)
+operation::alcohol-delete-by-id[snippets='http-request,http-response']
+
+NOTE: 아스키독 문법 https://narusas.github.io/2018/03/21/Asciidoc-basic.html

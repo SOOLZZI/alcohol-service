@@ -29,7 +29,6 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -37,8 +36,7 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Slf4j
@@ -136,6 +134,48 @@ class AlcoholControllerTest {
                 .andDo(document("alcohol-post",
                         requestFields(alcoholWithoutId)));
         // HttpStatus CREATED라 Response Body가 없다.
+    }
+
+    @Test
+    @DisplayName("알코올 수정 테스트")
+    void alcoholPutTest() throws Exception {
+        // given
+        Long sampleId = responseDTO.getId();
+
+        // when
+        ResultActions result = mockMvc.perform(RestDocumentationRequestBuilders.put("/api/alcohol/{id}", sampleId)
+                .content(toJson(dto))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON));
+
+        // then
+        result.andExpect(status().isOk())
+                .andDo(document("alcohol-put-by-id",
+                        pathParameters(
+                                parameterWithName("id").description("알코올 ID")
+                        ),
+                        requestFields(alcoholWithoutId)
+                ));
+    }
+
+    @Test
+    @DisplayName("알코올 삭제 테스트")
+    void alcoholPatchTest() throws Exception {
+        // given
+        Long sampleId = responseDTO.getId();
+
+        // when
+        ResultActions result = mockMvc.perform(RestDocumentationRequestBuilders.delete("/api/alcohol/{id}", sampleId)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON));
+
+        // then
+        result.andExpect(status().isNoContent())
+                .andDo(document("alcohol-delete-by-id",
+                        pathParameters(
+                                parameterWithName("id").description("알코올 ID")
+                        )
+                ));
     }
 
     FieldDescriptor[] alcoholWithoutId = new FieldDescriptor[]{
