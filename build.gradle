@@ -23,14 +23,6 @@ group = 'com.haruhanjan'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-
-    asciidoctorExt
-}
-
 ext {
     snippetsDir = file('build/generated-snippets')
 }
@@ -88,17 +80,4 @@ dependencies {
 tasks.named('test') {
     outputs.dir snippetsDir
     useJUnitPlatform()
-}
-
-configurations {
-    asciidoctorExtensions
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
-asciidoctor {
-    inputs.dir snippetsDir
-    configurations 'asciidoctorExt'
-    dependsOn test
 }
