@@ -1,4 +1,4 @@
-= Recipe-server REST API Guide
+= Alcohol Server REST API Guide
 Always0ne;
 :doctype: book
 :icons: font
@@ -15,7 +15,7 @@ operation::alcohol-get-all[snippets='http-request,http-response,response-fields'
 
 [[alcohol-get-one]]
 === 알코올 단일 조회
-operation::alcohol-get-one[snippets='http-request,http-response,response-fields']
+operation::alcohol-get-one[snippets='path-parameters,http-request,http-response,response-fields']
 
 [[alcohol-post]]
 === 알코올 저장
@@ -23,10 +23,10 @@ operation::alcohol-post[snippets='http-request,request-fields,http-response,resp
 
 [[alcohol-put-by-id]]
 === 알코올 정보 수정
-operation::alcohol-put-by-id[snippets='http-request,request-fields,http-response']
+operation::alcohol-put-by-id[snippets='path-parameters,http-request,request-fields,http-response']
 
 [[alcohol-delete-by-id]]
 === 알코올 삭제 (논리 삭제)
-operation::alcohol-delete-by-id[snippets='http-request,http-response']
+operation::alcohol-delete-by-id[snippets='path-parameters,http-request,http-response']
 
 NOTE: 아스키독 문법 https://narusas.github.io/2018/03/21/Asciidoc-basic.html
